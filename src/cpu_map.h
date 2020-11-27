@@ -61,9 +61,9 @@
   #define LIMIT_PIN        PINB
   #define LIMIT_PORT       PORTB
   #define X_LIMIT_BIT      1  // Uno Digital Pin 9
-  #define Y_LIMIT_BIT      1  // Uno Digital Pin 9
+  #define Y_LIMIT_BIT      1  // Uno Digital Pin 9 
   #ifdef VARIABLE_SPINDLE // Z Limit pin and spindle enabled swapped to access hardware PWM on Pin 11.
-      #define Z_LIMIT_BIT	   1 // Uno Digital Pin 9
+      #define Z_LIMIT_BIT	   1 // Uno Digital Pin 9 
   #else
     #define Z_LIMIT_BIT    3  // Uno Digital Pin 11
   #endif
@@ -73,6 +73,12 @@
   #define LIMIT_INT        PCIE0  // Pin change interrupt enable pin
   #define LIMIT_INT_vect   PCINT0_vect
   #define LIMIT_PCMSK      PCMSK0 // Pin change interrupt register
+
+
+  #define OUTPUT_DDR DDRB
+  #define OUTPUT_PORT PORTB
+  #define OUTPUT1_BIT 2 // pin 10
+  #define OUTPUT2_BIT 4 // pin 12
 
   // Define user-control controls (cycle start, reset, feed hold) input pins.
   // NOTE: All CONTROLs pins must be on the same port and not on a port with other input pins (limits).

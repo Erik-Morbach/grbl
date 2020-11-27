@@ -280,6 +280,10 @@ uint8_t gc_execute_line(char *line)
               gc_block.modal.override = OVERRIDE_PARKING_MOTION;
               break;
           #endif
+            case 71: case 72: case 73: case 74:
+              if((int_value-71)>>1) output_write(OUTPUT1_BIT,int_value%2);  
+              else output_write(OUTPUT2_BIT, int_value%2);
+              break;
           default: FAIL(STATUS_GCODE_UNSUPPORTED_COMMAND); // [Unsupported M command]
         }
 

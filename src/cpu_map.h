@@ -50,10 +50,10 @@
   #define DIRECTION_MASK    ((1<<X_DIRECTION_BIT)|(1<<Y_DIRECTION_BIT)|(1<<Z_DIRECTION_BIT)) // All direction bits
 
   // Define stepper driver enable/disable output pin.
-  #define STEPPERS_DISABLE_DDR    DDRB
-  #define STEPPERS_DISABLE_PORT   PORTB
-  #define STEPPERS_DISABLE_BIT    0  // Uno Digital Pin 8
-  #define STEPPERS_DISABLE_MASK   (1<<STEPPERS_DISABLE_BIT)
+  //#define STEPPERS_DISABLE_DDR    DDRB
+  //#define STEPPERS_DISABLE_PORT   PORTB
+  //#define STEPPERS_DISABLE_BIT    0  // Uno Digital Pin 8
+  //#define STEPPERS_DISABLE_MASK   (1<<STEPPERS_DISABLE_BIT)
 
   // Define homing/hard limit switch input pins and limit interrupt vectors.
   // NOTE: All limit bit pins must be on the same port, but not on a port with other input pins (CONTROL).
@@ -108,9 +108,13 @@
     #define COOLANT_FLOOD_DDR   DDRC
     #define COOLANT_FLOOD_PORT  PORTC
     #define COOLANT_FLOOD_BIT   3  // Uno Analog Pin 3
-    #define COOLANT_MIST_DDR   DDRC
-    #define COOLANT_MIST_PORT  PORTC
-    #define COOLANT_MIST_BIT   4  // Uno Analog Pin 4
+    //#define COOLANT_MIST_DDR   DDRC
+    //#define COOLANT_MIST_PORT  PORTC
+    //#define COOLANT_MIST_BIT   4  // Uno Analog Pin 4
+
+    #define FEED_OVERRIDE_DDR DDRC
+    #define FEED_OVERIDE_PORT PORTC
+    #define FEED_OVERIDE_BIT 4 //Uno Analog pin 4
 
     // Define spindle enable and spindle direction output pins.
     #define SPINDLE_ENABLE_DDR    DDRB
@@ -129,7 +133,8 @@
     #ifndef USE_SPINDLE_DIR_AS_ENABLE_PIN
       #define SPINDLE_DIRECTION_DDR   DDRB
       #define SPINDLE_DIRECTION_PORT  PORTB
-      #define SPINDLE_DIRECTION_BIT   5  // Uno Digital Pin 13 (NOTE: D13 can't be pulled-high input due to LED.)
+      #define SPINDLE_DIRECTION_CCW_BIT   5  // Uno Digital Pin 13 (NOTE: D13 can't be pulled-high input due to LED.)
+      #define SPINDLE_DIRECTION_CW_BIT  0  // Uno Digital Pin 8
     #endif
 
     // Variable spindle configuration below. Do not change unless you know what you are doing.

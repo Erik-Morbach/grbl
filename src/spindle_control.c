@@ -39,7 +39,7 @@ void spindle_init()
       SPINDLE_ENABLE_DDR |= (1<<SPINDLE_ENABLE_BIT); // Configure as output pin.
     #else
       #ifndef ENABLE_DUAL_AXIS
-        SPINDLE_DIRECTION_DDR |= (1<<SPINDLE_DIRECTION_BIT); // Configure as output pin.
+        SPINDLE_DIRECTION_DDR |= (1<<SPINDLE_DIRECTION_CW_BIT)|(1<<SPINDLE_DIRECTION_CCW_BIT); // Configure as output pin.
       #endif
     #endif
     pwm_gradient = SPINDLE_PWM_RANGE/(settings.rpm_max-settings.rpm_min);
@@ -69,7 +69,7 @@ uint8_t spindle_get_state()
         #ifdef ENABLE_DUAL_AXIS
           return(SPINDLE_STATE_CW);
         #else
-          if (SPINDLE_DIRECTION_PORT & (1<<SPINDLE_DIRECTION_BIT)) { return(SPINDLE_STATE_CCW); }
+          if (SPINDLE_DIRECTION_PORT & (1<<SPINDLE_DIRECTION_CCW_BIT)) { return(SPINDLE_STATE_CCW); }
           else { return(SPINDLE_STATE_CW); }
         #endif
       }
@@ -241,9 +241,11 @@ void spindle_stop()
     
     #if !defined(USE_SPINDLE_DIR_AS_ENABLE_PIN) && !defined(ENABLE_DUAL_AXIS)
       if (state == SPINDLE_ENABLE_CW) {
-        SPINDLE_DIRECTION_PORT &= ~(1<<SPINDLE_DIRECTION_BIT);
+        SPINDLE_DIRECTION_PORT &= ~(1<<SPINDLE_DIRECTION_CCW_BIT);
+        SPINDLE_DIRECTION_PORT |= (1<<SPINDLE_DIRECTION_CW_BIT);
       } else {
-        SPINDLE_DIRECTION_PORT |= (1<<SPINDLE_DIRECTION_BIT);
+        SPINDLE_DIRECTION_PORT &= ~(1<<SPINDLE_DIRECTION_CW_BIT);
+        SPINDLE_DIRECTION_PORT |= (1<<SPINDLE_DIRECTION_CCW_BIT);
       }
     #endif
   

@@ -4,33 +4,33 @@
             "name": "!!! WARNING !!! AUTO-GENERATED FILE, PLEASE DO NOT MODIFY IT AND USE https://docs.platformio.org/page/projectconf/section_env_build.html#build-flags"
         },
         {
-            "name": "Win32",
+            "name": "Linux",
             "includePath": [
-                "d:/BJM/grbl/include",
-                "d:/BJM/grbl/src",
-                "C:/Users/morba/.platformio/packages/framework-arduino-avr/cores/arduino",
-                "C:/Users/morba/.platformio/packages/framework-arduino-avr/variants/standard",
-                "C:/Users/morba/.platformio/packages/framework-arduino-avr/libraries/EEPROM/src",
-                "C:/Users/morba/.platformio/packages/framework-arduino-avr/libraries/HID/src",
-                "C:/Users/morba/.platformio/packages/framework-arduino-avr/libraries/SPI/src",
-                "C:/Users/morba/.platformio/packages/framework-arduino-avr/libraries/SoftwareSerial/src",
-                "C:/Users/morba/.platformio/packages/framework-arduino-avr/libraries/Wire/src",
-                "C:/Users/morba/.platformio/packages/tool-unity",
+                "/home/erik/BJM/grbl/include",
+                "/home/erik/BJM/grbl/src",
+                "/home/erik/.platformio/packages/framework-arduino-avr/cores/arduino",
+                "/home/erik/.platformio/packages/framework-arduino-avr/variants/standard",
+                "/home/erik/.platformio/packages/framework-arduino-avr/libraries/EEPROM/src",
+                "/home/erik/.platformio/packages/framework-arduino-avr/libraries/HID/src",
+                "/home/erik/.platformio/packages/framework-arduino-avr/libraries/SPI/src",
+                "/home/erik/.platformio/packages/framework-arduino-avr/libraries/SoftwareSerial/src",
+                "/home/erik/.platformio/packages/framework-arduino-avr/libraries/Wire/src",
+                "/home/erik/.platformio/packages/tool-unity",
                 ""
             ],
             "browse": {
                 "limitSymbolsToIncludedHeaders": true,
                 "path": [
-                    "d:/BJM/grbl/include",
-                    "d:/BJM/grbl/src",
-                    "C:/Users/morba/.platformio/packages/framework-arduino-avr/cores/arduino",
-                    "C:/Users/morba/.platformio/packages/framework-arduino-avr/variants/standard",
-                    "C:/Users/morba/.platformio/packages/framework-arduino-avr/libraries/EEPROM/src",
-                    "C:/Users/morba/.platformio/packages/framework-arduino-avr/libraries/HID/src",
-                    "C:/Users/morba/.platformio/packages/framework-arduino-avr/libraries/SPI/src",
-                    "C:/Users/morba/.platformio/packages/framework-arduino-avr/libraries/SoftwareSerial/src",
-                    "C:/Users/morba/.platformio/packages/framework-arduino-avr/libraries/Wire/src",
-                    "C:/Users/morba/.platformio/packages/tool-unity",
+                    "/home/erik/BJM/grbl/include",
+                    "/home/erik/BJM/grbl/src",
+                    "/home/erik/.platformio/packages/framework-arduino-avr/cores/arduino",
+                    "/home/erik/.platformio/packages/framework-arduino-avr/variants/standard",
+                    "/home/erik/.platformio/packages/framework-arduino-avr/libraries/EEPROM/src",
+                    "/home/erik/.platformio/packages/framework-arduino-avr/libraries/HID/src",
+                    "/home/erik/.platformio/packages/framework-arduino-avr/libraries/SPI/src",
+                    "/home/erik/.platformio/packages/framework-arduino-avr/libraries/SoftwareSerial/src",
+                    "/home/erik/.platformio/packages/framework-arduino-avr/libraries/Wire/src",
+                    "/home/erik/.platformio/packages/tool-unity",
                     ""
                 ]
             },
@@ -46,7 +46,7 @@
             "intelliSenseMode": "gcc-x64",
             "cStandard": "c11",
             "cppStandard": "c++11",
-            "compilerPath": "C:/Users/morba/.platformio/packages/toolchain-atmelavr/bin/avr-gcc.exe",
+            "compilerPath": "/home/erik/.platformio/packages/toolchain-atmelavr/bin/avr-gcc",
             "compilerArgs": [
                 "-mmcu=atmega328p",
                 ""

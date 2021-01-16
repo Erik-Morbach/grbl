@@ -135,6 +135,7 @@ typedef struct {
   #ifdef ENABLE_DUAL_AXIS
     uint8_t homing_axis_lock_dual;
   #endif
+  uint8_t last_computed_analog_override;
   uint8_t f_override;          // Feed rate override value in percent
   uint8_t r_override;          // Rapids override value in percent
   uint8_t spindle_speed_ovr;   // Spindle speed value in percent
@@ -168,6 +169,7 @@ extern volatile uint8_t sys_rt_exec_accessory_override; // Global realtime execu
 // Initialize the serial protocol
 void system_init();
 
+uint8_t system_read_analog_override();
 // Returns bitfield of control pin states, organized by CONTROL_PIN_INDEX. (1=triggered, 0=not triggered).
 uint8_t system_control_get_state();
 

@@ -31,8 +31,20 @@ void system_init()
   #endif
   CONTROL_PCMSK |= CONTROL_MASK;  // Enable specific pins of the Pin Change Interrupt
   PCICR |= (1 << CONTROL_INT);   // Enable Pin Change Interrupt
+
 }
 
+uint8_t system_read_analog_override(){
+  ADMUX = (1 << REFS0)|FEED_OVERRIDE_BIT; // use Vcc as reference
+  ADMUX |= (1 << ADLAR);
+  // used feed override pin in ADC
+  ADCSRA |= (1 << ADEN)|(1 << ADPS2)|(1 << ADPS1)|(1 << ADPS0); // Use Free mode
+  // set the prescaler to 128 
+  ADCSRA |= (1<<ADSC);
+  while(ADCSRA & (1<< ADSC));
+
+  return ADCH;
+}
 
 // Returns control pin state as a uint8 bitfield. Each bit indicates the input pin state, where
 // triggered is 1 and not triggered is 0. Invert mask is applied. Bitfield organization is
@@ -53,6 +65,7 @@ uint8_t system_control_get_state()
     if (bit_istrue(pin,(1<<CONTROL_RESET_BIT))) { control_state |= CONTROL_PIN_INDEX_RESET; }
     if (bit_istrue(pin,(1<<CONTROL_CYCLE_START_BIT))) { control_state |= CONTROL_PIN_INDEX_CYCLE_START; }
   }
+  
   return(control_state);
 }
 

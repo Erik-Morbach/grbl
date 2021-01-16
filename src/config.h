@@ -201,7 +201,7 @@
 // will be applied to all of them. This is useful when a user has a mixed set of limit pins with both
 // normally-open(NO) and normally-closed(NC) switches installed on their machine.
 // NOTE: PLEASE DO NOT USE THIS, unless you have a situation that needs it.
-// #define INVERT_LIMIT_PIN_MASK ((1<<X_LIMIT_BIT)|(1<<Y_LIMIT_BIT)) // Default disabled. Uncomment to enable.
+#define INVERT_LIMIT_PIN_MASK ((1<<X_LIMIT_BIT)|(1<<Y_LIMIT_BIT)) // Default disabled. Uncomment to enable.
 
 // Inverts the spindle enable pin from low-disabled/high-enabled to low-enabled/high-disabled. Useful
 // for some pre-built electronic boards.
@@ -240,13 +240,16 @@
 // note the allowable values in the descriptions following each define.
 #define DEFAULT_FEED_OVERRIDE           100 // 100%. Don't change this value.
 #define MAX_FEED_RATE_OVERRIDE          200 // Percent of programmed feed rate (100-255). Usually 120% or 200%
-#define MIN_FEED_RATE_OVERRIDE           10 // Percent of programmed feed rate (1-100). Usually 50% or 1%
+#define MIN_FEED_RATE_OVERRIDE            1 // Percent of programmed feed rate (1-100). Usually 50% or 1%
 #define FEED_OVERRIDE_COARSE_INCREMENT   10 // (1-99). Usually 10%.
 #define FEED_OVERRIDE_FINE_INCREMENT      1 // (1-99). Usually 1%.
 
 #define DEFAULT_RAPID_OVERRIDE  100 // 100%. Don't change this value.
 #define RAPID_OVERRIDE_MEDIUM    50 // Percent of rapid (1-99). Usually 50%.
 #define RAPID_OVERRIDE_LOW       25 // Percent of rapid (1-99). Usually 25%.
+#define MAX_RAPID_OVERRIDE 200
+#define MIN_RAPID_OVERRIDE 1
+
 // #define RAPID_OVERRIDE_EXTRA_LOW 5 // *NOT SUPPORTED* Percent of rapid (1-99). Usually 5%.
 
 #define DEFAULT_SPINDLE_SPEED_OVERRIDE    100 // 100%. Don't change this value.
@@ -546,7 +549,7 @@
 // Most probe sensors produce different levels of error that is dependent on rate of speed. By 
 // keeping probing cycles to their programmed feed rates, the probe sensor should be a lot more
 // repeatable. If needed, you can disable this behavior by uncommenting the define below.
-// #define ALLOW_FEED_OVERRIDE_DURING_PROBE_CYCLES // Default disabled. Uncomment to enable.
+#define ALLOW_FEED_OVERRIDE_DURING_PROBE_CYCLES // Default disabled. Uncomment to enable.
 
 // Enables and configures parking motion methods upon a safety door state. Primarily for OEMs
 // that desire this feature for their integrated machines. At the moment, Grbl assumes that

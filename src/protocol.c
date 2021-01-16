@@ -237,6 +237,7 @@ void protocol_exec_rt_system()
     system_clear_exec_alarm(); // Clear alarm
   }
 
+
   rt_exec = sys_rt_exec_state; // Copy volatile sys_rt_exec_state.
   if (rt_exec) {
 
@@ -404,22 +405,38 @@ void protocol_exec_rt_system()
 
   // Execute overrides.
   rt_exec = sys_rt_exec_motion_override; // Copy volatile sys_rt_exec_motion_override
-  if (rt_exec) {
+
+  static uint8_t analog_wait_counter = 0; 
+  analog_wait_counter++;
+  uint8_t new_analog_override;
+  if(analog_wait_counter==(1<<7)){
+    analog_wait_counter = 0;
+    new_analog_override = system_read_analog_override();
+  }
+  else new_analog_override = sys.last_computed_analog_override;
+  bool new_override = new_analog_override != sys.last_computed_analog_override; 
+  if (rt_exec || new_override) {
     system_clear_exec_motion_overrides(); // Clear all motion override flags.
-
     uint8_t new_f_override =  sys.f_override;
-    if (rt_exec & EXEC_FEED_OVR_RESET) { new_f_override = DEFAULT_FEED_OVERRIDE; }
-    if (rt_exec & EXEC_FEED_OVR_COARSE_PLUS) { new_f_override += FEED_OVERRIDE_COARSE_INCREMENT; }
-    if (rt_exec & EXEC_FEED_OVR_COARSE_MINUS) { new_f_override -= FEED_OVERRIDE_COARSE_INCREMENT; }
-    if (rt_exec & EXEC_FEED_OVR_FINE_PLUS) { new_f_override += FEED_OVERRIDE_FINE_INCREMENT; }
-    if (rt_exec & EXEC_FEED_OVR_FINE_MINUS) { new_f_override -= FEED_OVERRIDE_FINE_INCREMENT; }
-    new_f_override = min(new_f_override,MAX_FEED_RATE_OVERRIDE);
-    new_f_override = max(new_f_override,MIN_FEED_RATE_OVERRIDE);
-
     uint8_t new_r_override = sys.r_override;
+
+    if(new_override) new_f_override = new_analog_override;
+    else{
+      if (rt_exec & EXEC_FEED_OVR_RESET) { new_f_override = DEFAULT_FEED_OVERRIDE; }
+      if (rt_exec & EXEC_FEED_OVR_COARSE_PLUS) { new_f_override += FEED_OVERRIDE_COARSE_INCREMENT; }
+      if (rt_exec & EXEC_FEED_OVR_COARSE_MINUS) { new_f_override -= FEED_OVERRIDE_COARSE_INCREMENT; }
+      if (rt_exec & EXEC_FEED_OVR_FINE_PLUS) { new_f_override += FEED_OVERRIDE_FINE_INCREMENT; }
+      if (rt_exec & EXEC_FEED_OVR_FINE_MINUS) { new_f_override -= FEED_OVERRIDE_FINE_INCREMENT; }
+    }
+
     if (rt_exec & EXEC_RAPID_OVR_RESET) { new_r_override = DEFAULT_RAPID_OVERRIDE; }
     if (rt_exec & EXEC_RAPID_OVR_MEDIUM) { new_r_override = RAPID_OVERRIDE_MEDIUM; }
     if (rt_exec & EXEC_RAPID_OVR_LOW) { new_r_override = RAPID_OVERRIDE_LOW; }
+
+    new_f_override = min(new_f_override,MAX_FEED_RATE_OVERRIDE);
+    new_f_override = max(new_f_override,MIN_FEED_RATE_OVERRIDE);
+    new_r_override = max(MIN_RAPID_OVERRIDE,new_r_override);
+    new_r_override = min(MAX_RAPID_OVERRIDE,new_r_override);
 
     if ((new_f_override != sys.f_override) || (new_r_override != sys.r_override)) {
       sys.f_override = new_f_override;

@@ -113,8 +113,8 @@
     //#define COOLANT_MIST_BIT   4  // Uno Analog Pin 4
 
     #define FEED_OVERRIDE_DDR DDRC
-    #define FEED_OVERIDE_PORT PORTC
-    #define FEED_OVERIDE_BIT 4 //Uno Analog pin 4
+    #define FEED_OVERRIDE_PORT PORTC
+    #define FEED_OVERRIDE_BIT 4 //Uno Analog pin 4
 
     // Define spindle enable and spindle direction output pins.
     #define SPINDLE_ENABLE_DDR    DDRB

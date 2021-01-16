@@ -657,6 +657,6 @@ void report_realtime_status()
 #ifdef DEBUG
   void report_realtime_debug()
   {
-
+    
   }
 #endif

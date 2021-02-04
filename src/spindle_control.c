@@ -236,7 +236,7 @@ void spindle_stop()
       sys.spindle_speed = 0.0;
     #endif
     spindle_stop();
-  
+    SPINDLE_DIRECTION_PORT &= ~((1<<SPINDLE_DIRECTION_CW_BIT)|(1<<SPINDLE_DIRECTION_CCW_BIT));
   } else {
     
     #if !defined(USE_SPINDLE_DIR_AS_ENABLE_PIN) && !defined(ENABLE_DUAL_AXIS)
